@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ArchivoEstudiantes;
 import Modelo.MetodosEstudiantesXML;
 import Vista.FRM_Estudiantes;
 import java.awt.event.ActionEvent;
@@ -19,17 +20,20 @@ public class Controlador_FRM_Estudiantes implements ActionListener{
    
     FRM_Estudiantes frm_Estudiantes;
     MetodosEstudiantesXML metodos;
+    ArchivoEstudiantes archivoEstudiantes;
     
     public Controlador_FRM_Estudiantes(FRM_Estudiantes frm_Estudiantes) 
     {
         this.frm_Estudiantes=frm_Estudiantes;
         metodos=new MetodosEstudiantesXML(frm_Estudiantes);
+        archivoEstudiantes= new ArchivoEstudiantes();
     }
     public void actionPerformed(ActionEvent e)
     {
         if(e.getActionCommand().equals("Agregar"))
         {
             metodos.guardarEstudiantesXML(frm_Estudiantes.devolverInformacion());
+            //archivoEstudiantes.agregarArchivoEstudiantes(frm_Estudiantes.devolverInformacion());
             frm_Estudiantes.mostrarMensaje("Información agregada al archivo XML de forma correcta.");
             frm_Estudiantes.limpiarInterfaz();
             frm_Estudiantes.estadoInicial();
